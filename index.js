@@ -54,7 +54,7 @@ app.get('/movie/:id', function (req, res) {
 app.get('/admin/movie', function (req, res) {
     res.render('admin', {
         title: '后台录入页',
-        movies: [{
+        movie: [{
             doctor: "",
             country: "",
             title: "",
@@ -83,30 +83,30 @@ app.get('/admin/update/:id',function (req,res) {
 // admin post movie录入电影
 app.post('/admin/movie/new', function (req, res) {
     var id = req.body.movie._id;
-    console.log(id);
     var movieObj = req.body.movie;
-    var _movie;
-    if (id !== 'undefined' && id !== '') {
+    console.log(movieObj);
+    var _movie = null;
+    if (id !== 'undefined') {
         Movie.findById(id, function (err, movie) {
+            console.log(movie);
             if (err) {
                 console.log(err)
             }
             _movie = _.extend(movie, movieObj);//使用underscore模块，新的对象直接可替换旧的对象
-            _movie = new Movie(); //必须new一个实例，否则save是null
+            _movie = new Movie(_movie); //必须new一个实例，否则save是null
             _movie.save(function (err, movie) {
                 if (err) {
-                    console.log("hehe"+err)
+                    console.log(err)
                 }
                 res.redirect('/movie/' + movie._id)
             })
         })
-    } else {
+    } else
+        {
         _movie = new Movie({
-            doctor: movieObj.doctor,
             title: movieObj.title,
-            language: movieObj.language,
-            country: movieObj.country,
-            flash: movieObj.flash
+            doctor: movieObj.doctor,
+            language: movieObj.language
         });
         _movie.save(function (err, movie) {
             if (err) {

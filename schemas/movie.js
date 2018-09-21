@@ -2,14 +2,9 @@ var mongoose = require('mongoose');
 
 //定义一个基本的模型，对象类型
 var MovieSchema = new mongoose.Schema({
-    doctor: String,
     title: String,
+    doctor: String,
     language: String,
-    country: String,
-    summary: String,
-    poster: String,
-    flash: String,
-    year: Number,
     meta: {
         createAt: {
             type: Date,
