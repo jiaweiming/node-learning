@@ -1,7 +1,18 @@
-doctype
-html
-    head
-        meta(charset="utf-8")
-        title #{title}
-    body
-        h1 #{title}
+extends ../layout
+
+block content
+    .container
+        h2 #{title}
+        .row
+            .col-md-8
+                video(src=movie.flash,  width="100%", controls=true)
+            .col-md-4
+                dl.dl-horizontal
+                    dt 电影名字
+                    dd= movie.title
+                    dt 国家
+                    dd= movie.country
+                    dt 导演
+                    dd= movie.doctor
+                    dt 语言
+                    dd= movie.language
