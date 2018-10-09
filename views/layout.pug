@@ -4,9 +4,10 @@ html
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
         title #{title}
-        style.
-            .img{width:100%}
-        include ./includes/head
+        include includes/css
+        include includes/js
     body
-        //include ./includes/header
+        include includes/header
         block content
+        block javascript
+            script(src="js/admin.js", type="text/javascript")

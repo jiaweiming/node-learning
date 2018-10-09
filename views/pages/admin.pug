@@ -2,22 +2,21 @@ extends ../layout
 
 block content
     .container
-        h2 #{title}
         .row
-            form.form-horizontal(method="post", action="/admin/movie/new")
-                input(type="hidden", name="movie[_id]", value="#{movie._id}")
+            form.form-horizontal.col-md-12(method="post", action="/admin/movie/new")
+                input(type="hidden")
                 .form-group
-                    label.col-sm-6.control-label(for="inputTitle") 电影名字
-                    .col-sm-10
-                        input#inputTitle.form-contol(type="text", name="movie[title]")
+                    label.col-sm-12.control-label(for="inputTitle") 电影名字
+                    .col-sm-12
+                        input#inputTitle.form-contol.col-md-12(type="text", name="movie[title]", required)
                 .form-group
-                    label.col-sm-6.control-label(for="inputDoctor") 电影导演
-                    .col-sm-10
-                        input#inputDoctor.form-contol(type="text", name="movie[doctor]")
+                    label.col-sm-12.control-label(for="inputDoctor") 电影导演
+                    .col-sm-12
+                        input#inputDoctor.form-contol.col-md-12(type="text", name="movie[doctor]", required)
                 .form-group
-                    label.col-sm-6.control-label(for="inputLanguage") 电影语言
-                    .col-sm-10
-                        input#inputLanguage.form-contol(type="text", name="movie[language]")
+                    label.col-sm-12.control-label(for="inputLanguage") 电影语言
+                    .col-sm-12
+                        input#inputLanguage.form-contol.col-md-12(type="text", name="movie[language]", required)
                 .form-group
-                    .col-sm-offset-2.col-sm-10
-                        button.btn.btn-default(type="submit") 录入
+                    .col-sm-offset-2.col-sm-12
+                        button.btn.btn-primary.col-md-12.btn-lg(type="submit") 录入
