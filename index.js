@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var _ = require('underscore');
 var Movie = require('./modals/movie.js');
+var User = require('./modals/user.js');
 var path = require("path");
 var bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({extended: true});
@@ -134,7 +135,7 @@ app.get('/admin/list', function (req, res) {
 app.delete('/admin/list', function (req, res) {
     var id = req.query.id;
     if (id) {
-        Movie.remove({_id: id}, function (err, movie) {
+        Movie.deleteOne({_id: id}, function (err, movie) {
             if (err) {
                 console.log(err)
             } else {
@@ -142,6 +143,59 @@ app.delete('/admin/list', function (req, res) {
             }
         })
     }
+});
+
+//注册处理
+app.post('/user/signUp', function (req, res) {
+    var _user = req.body.user;
+    User.findOne({name: _user.name}, function (err, user) {
+        if (err) {
+            console.log(err)
+        }
+        if (user) {//如果已经有user，则该名称已经使用过了，else保存起来就好
+            console.log("已经注册过啦");
+            return res.redirect("/")
+        } else {
+            var newUser = new User(_user);
+            newUser.save(function (err, user) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log("注册成功");
+                    return res.redirect("/")
+                }
+            })
+        }
+    });
+});
+
+//登录处理
+app.post('/user/signIn', function (req, res) {
+    var _user = req.body.user;
+    var name = _user.name;
+    var password = _user.password;
+    User.findOne({name: name}, function (err, user) {
+        if (err) {
+            console.log(err)
+        }
+        if (!user) {
+            res.json({message:"账户不存在"});
+            console.log("账户不存在")
+        } else {
+            user.comparePassWord(password, function (err, isMatch) {
+                if (err) {
+                    console.log(err)
+                }
+                if (isMatch) {
+                    console.log("密码正确");
+                    return res.redirect("/");
+                } else {
+                    console.log("密码错误");
+                    res.json({message:"密码错误"})
+                }
+            })
+        }
+    })
 });
 
 

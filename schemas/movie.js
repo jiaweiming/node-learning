@@ -2,9 +2,15 @@ var mongoose = require('mongoose');
 
 //定义一个基本的模型，对象类型
 var MovieSchema = new mongoose.Schema({
-    title: {type: String},
-    doctor: {type: String},
-    language: {type: String},
+    title: {
+        type: String
+    },
+    doctor: {
+        type: String
+    },
+    language: {
+        type: String
+    },
     meta: {
         createAt: {
             type: Date,
@@ -29,11 +35,11 @@ MovieSchema.pre('save', function (next) {
 
 //添加静态方法，查询数据
 MovieSchema.statics = {
-    fetch: function (cb) {
-        return this.find({}).sort('meta-updateAt').exec(cb)
+    fetch: function (callback) {
+        return this.find({}).sort('meta-updateAt').exec(callback)
     },
-    findById:function (id,cb) {
-        return this.findOne({"_id": id}).exec(cb)
+    findById: function (id, callback) {
+        return this.findOne({"_id": id}).exec(callback)
     }
 };
 
