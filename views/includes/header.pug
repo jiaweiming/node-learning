@@ -14,7 +14,7 @@
 #signUpModal.modal.fade
     .modal-dialog
         .modal-content
-            form(method="POST", action="/user/signUp")
+            form#signUpForm
                 .modal-header 注册
                 .modal-body
                     .form-group
@@ -24,12 +24,13 @@
                         label(for="signUpPassWord") 密码
                         input#signUpPassWord.form-control(name="user[password]", type="password", required)
                 .modal-footer
+                    span.remind-text-signup
                     button.btn.btn-danger(type="button", data-dismiss="modal") 关闭
-                    button.btn.btn-success(type="submit") 提交
+                    button.btn.btn-signUp.btn-success(type="submit") 提交
 #signInModal.modal.fade
     .modal-dialog
         .modal-content
-            form(method="POST", action="/user/signIn")
+            form#signInForm
                 .modal-header 登录
                 .modal-body
                     .form-group
@@ -39,5 +40,6 @@
                         label(for="signInPassWord") 密码
                         input#signInPassWord.form-control(name="user[password]", type="password", required)
                 .modal-footer
+                    span.remind-text
                     button.btn.btn-danger(type="button", data-dismiss="modal") 关闭
-                    button.btn.btn-success(type="submit") 提交
+                    button.btn.btn-signIn.btn-success(type="submit") 提交

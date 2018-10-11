@@ -5,3 +5,18 @@
     transform: translate(-50%,-50%);
     display: none;
 }
+.modal-footer{
+    position: relative;
+}
+.remind-text{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    color: #de2020;
+}
+.remind-text-signup{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    color: #de2020;
+}

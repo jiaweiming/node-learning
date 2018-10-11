@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 var _ = require('underscore');
 var Movie = require('./modals/movie.js');
 var User = require('./modals/user.js');
-var path = require("path");
 var bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({extended: true});
 var port = process.env.PORT || 8000;
@@ -148,21 +147,21 @@ app.delete('/admin/list', function (req, res) {
 //注册处理
 app.post('/user/signUp', function (req, res) {
     var _user = req.body.user;
+    console.log(req)
     User.findOne({name: _user.name}, function (err, user) {
         if (err) {
             console.log(err)
         }
         if (user) {//如果已经有user，则该名称已经使用过了，else保存起来就好
-            console.log("已经注册过啦");
-            return res.redirect("/")
+            res.json({message: 0});
+            console.log("已存在")
         } else {
             var newUser = new User(_user);
             newUser.save(function (err, user) {
                 if (err) {
                     console.log(err)
                 } else {
-                    console.log("注册成功");
-                    return res.redirect("/")
+                    res.json({message: 1});
                 }
             })
         }
@@ -179,19 +178,16 @@ app.post('/user/signIn', function (req, res) {
             console.log(err)
         }
         if (!user) {
-            res.json({message:"账户不存在"});
-            console.log("账户不存在")
+            res.json({message: 2});
         } else {
             user.comparePassWord(password, function (err, isMatch) {
                 if (err) {
                     console.log(err)
                 }
                 if (isMatch) {
-                    console.log("密码正确");
-                    return res.redirect("/");
+                    res.json({message: 1});
                 } else {
-                    console.log("密码错误");
-                    res.json({message:"密码错误"})
+                    res.json({message: 0});
                 }
             })
         }
