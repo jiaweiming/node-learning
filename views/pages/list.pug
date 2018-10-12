@@ -8,9 +8,8 @@ block content
                         th 电影名字
                         th 电影导演
                         th 电影语言
-                        //th 录入时间
+                        th 录入时间
                         th 查看
-                        th 更新
                         th 删除
                 tbody
                     each item in movies
@@ -18,8 +17,8 @@ block content
                             td #{item.title}
                             td #{item.doctor}
                             td #{item.language}
-                            //td #{moment(item.meta.createdAt).format('MM/DD/YYYY')}
+                            td #{moment(item.meta.createdAt).format('MM/DD/YYYY')}
                             td: a(href="../movie/" + item._id) 查看
-                            td: a(href="../admin/update/" + item._id) 修改
+                            //td: a(href="../admin/update/" + item._id) 修改
                             td
                                 button.btn.btn-danger.del(type="button", data-id=item._id) 删除

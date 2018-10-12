@@ -1,5 +1,5 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
-    img(class="loading", src="https://cdn.shopify.com/s/files/1/2350/7085/files/Spinner-1s-200px.gif?4114847709184161607")
+    img(class="loading", src="images/loading.gif")
     button.navbar-toggler(data-toggle="collapse", data-target="#navbarNavDropdown", aria-controls="navbarNavDropdown", aria-expanded="false", aria-label="Toggle navigation")
         span.navbar-toggler-icon
     .collapse.navbar-collapse#navbarNavDropdown
@@ -12,17 +12,31 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
             li.nav-item
                 a.nav-link(href="/admin/list") List
             li.nav-item
-                a.nav-link(href="/admin/movie") Admin
+                if user
+                    a.nav-link(href="/admin/movie") Admin
+                else
+                    a.nav-link(href="#", data-toggle="modal", data-target="#signInModal") Admin
             li.nav-item.dropdown
                 a.nav-link.dropdown-toggle#navbarDropdownMenuLink(href="#", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") More Info
                 .dropdown-menu(aria-labelledby="navbarDropdownMenuLink")
                     a.dropdown-item(href="#") Action One
                     a.dropdown-item(href="#") Action Two
                     a.dropdown-item(href="#") Action Three
-    p.navbar-text.navbar-right
-        a.navbar-link(href="#", data-toggle="modal", data-target="#signUpModal") 注册
-        span &nbsp;|&nbsp;
-        a.navbar-link(href="#", data-toggle="modal", data-target="#signInModal") 登录
+    if user
+        p.navbar-text.navbar-right
+            a.navbar-link 欢迎您,
+                i.navbar-link-name  &nbsp#{user.name}&nbsp
+            span &nbsp;|&nbsp;
+            a.navbar-link(href="/logout")
+                img(src='images/logout.png')
+    else
+        p.navbar-text.navbar-right
+            a.navbar-link(href="#", data-toggle="modal", data-target="#signUpModal")
+                img(src='images/signup.png')
+            span &nbsp;|&nbsp;
+            a.navbar-link(href="#", data-toggle="modal", data-target="#signInModal")
+                img(src='images/login_user.png')
+
 #signUpModal.modal.fade
     .modal-dialog
         .modal-content
@@ -46,7 +60,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
                 .modal-header 登录
                 .modal-body
                     .form-group
-                        label(for="signUpName") 用户名
+                        label(for="signInName") 用户名
                         input#signInName.form-control(name="user[name]", type="text", required)
                     .form-group
                         label(for="signInPassWord") 密码

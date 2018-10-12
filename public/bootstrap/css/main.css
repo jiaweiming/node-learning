@@ -58,3 +58,10 @@
     text-overflow:ellipsis;
     overflow:hidden;
 }
+.navbar-link-name{
+    color: #ff6d04 !important;
+}
+.navbar-link img{
+    width: 20px;
+    vertical-align: sub;
+}
