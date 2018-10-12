@@ -27,16 +27,15 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
             a.navbar-link 欢迎您,
                 i.navbar-link-name  &nbsp#{user.name}&nbsp
             span &nbsp;|&nbsp;
-            a.navbar-link(href="/logout")
-                img(src='images/logout.png')
+            a.navbar-link(href="/logout") 退出
+                //img(src='images/logout.png')
     else
         p.navbar-text.navbar-right
-            a.navbar-link(href="#", data-toggle="modal", data-target="#signUpModal")
-                img(src='images/signup.png')
+            a.navbar-link(href="#", data-toggle="modal", data-target="#signUpModal") 注册
+                //img(src='images/signup.png')
             span &nbsp;|&nbsp;
-            a.navbar-link(href="#", data-toggle="modal", data-target="#signInModal")
-                img(src='images/login_user.png')
-
+            a.navbar-link(href="#", data-toggle="modal", data-target="#signInModal") 登录
+                //img(src='images/login_user.png')
 #signUpModal.modal.fade
     .modal-dialog
         .modal-content
