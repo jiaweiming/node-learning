@@ -1,16 +1,28 @@
-.container
-    .row
-        .page-header
-            h2 #{title}
-            img(class="loading", src="https://cdn.shopify.com/s/files/1/2350/7085/files/Spinner-1s-200px.gif?4114847709184161607")
-.navbar.navbar-default.navbar-fixed-bottom
-    .container
-        .navbar-header
-            a.navbar-brand(href="/")
-        p.navbar-text.navbar-right
-            a.navbar-link(href="#", data-toggle="modal", data-target="#signUpModal") 注册
-            span &nbsp;|&nbsp;
-            a.navbar-link(href="#", data-toggle="modal", data-target="#signInModal") 登录
+nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
+    img(class="loading", src="https://cdn.shopify.com/s/files/1/2350/7085/files/Spinner-1s-200px.gif?4114847709184161607")
+    button.navbar-toggler(data-toggle="collapse", data-target="#navbarNavDropdown", aria-controls="navbarNavDropdown", aria-expanded="false", aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarNavDropdown
+        ul.navbar-nav
+            li.nav-item.active
+                a.nav-link(href="#") #{title}
+                    span.sr-only (currently)
+            li.nav-item
+                a.nav-link(href="/") Home
+            li.nav-item
+                a.nav-link(href="/admin/list") List
+            li.nav-item
+                a.nav-link(href="/admin/movie") Admin
+            li.nav-item.dropdown
+                a.nav-link.dropdown-toggle#navbarDropdownMenuLink(href="#", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") More Info
+                .dropdown-menu(aria-labelledby="navbarDropdownMenuLink")
+                    a.dropdown-item(href="#") Action One
+                    a.dropdown-item(href="#") Action Two
+                    a.dropdown-item(href="#") Action Three
+    p.navbar-text.navbar-right
+        a.navbar-link(href="#", data-toggle="modal", data-target="#signUpModal") 注册
+        span &nbsp;|&nbsp;
+        a.navbar-link(href="#", data-toggle="modal", data-target="#signInModal") 登录
 #signUpModal.modal.fade
     .modal-dialog
         .modal-content
@@ -43,3 +55,5 @@
                     span.remind-text
                     button.btn.btn-danger(type="button", data-dismiss="modal") 关闭
                     button.btn.btn-signIn.btn-success(type="submit") 提交
+nav.navbar.fixed-bottom.navbar-light.bg-dark.justify-content-center
+    span.footer-desc COPYRIGHT © 2018  &nbsp Made by jwm

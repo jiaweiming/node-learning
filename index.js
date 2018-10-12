@@ -58,13 +58,12 @@ app.get('/admin/movie', function (req, res) {
     res.render('admin', {
         title: '后台录入页',
         movie: [{
-            doctor: "",
-            country: "",
             title: "",
-            year: "",
-            poster: "",
+            doctor: "",
             language: "",
-            flash: ""
+            photo: "",
+            description: "",
+            actors: ""
         }]
     })
 });
@@ -106,7 +105,10 @@ app.post('/admin/movie/new', urlencodedParser, function (req, res) {
         _movie = new Movie({
             title: movieObj.title,
             doctor: movieObj.doctor,
-            language: movieObj.language
+            language: movieObj.language,
+            photo: movieObj.photo,
+            description:movieObj.description,
+            actors: movieObj.actors
         });
         _movie.save(function (err, movie) {
             if (err) {
@@ -147,21 +149,16 @@ app.delete('/admin/list', function (req, res) {
 //注册处理
 app.post('/user/signUp', function (req, res) {
     var _user = req.body.user;
-    console.log(req)
     User.findOne({name: _user.name}, function (err, user) {
-        if (err) {
-            console.log(err)
-        }
         if (user) {//如果已经有user，则该名称已经使用过了，else保存起来就好
-            res.json({message: 0});
-            console.log("已存在")
+            res.json({message: 0,text:"用户名被占用，请更换用户名！"});
         } else {
             var newUser = new User(_user);
             newUser.save(function (err, user) {
                 if (err) {
                     console.log(err)
                 } else {
-                    res.json({message: 1});
+                    res.json({message: 1,text:"注册成功！"});
                 }
             })
         }
@@ -174,20 +171,14 @@ app.post('/user/signIn', function (req, res) {
     var name = _user.name;
     var password = _user.password;
     User.findOne({name: name}, function (err, user) {
-        if (err) {
-            console.log(err)
-        }
         if (!user) {
-            res.json({message: 2});
+            res.json({message: 2, text: "账号不存在，请先注册！"});
         } else {
             user.comparePassWord(password, function (err, isMatch) {
-                if (err) {
-                    console.log(err)
-                }
                 if (isMatch) {
-                    res.json({message: 1});
+                    res.json({message: 1, text: "登录成功！"});
                 } else {
-                    res.json({message: 0});
+                    res.json({message: 0, text: "密码错误！"});
                 }
             })
         }

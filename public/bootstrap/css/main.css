@@ -4,6 +4,11 @@
     top: 50%;
     transform: translate(-50%,-50%);
     display: none;
+    z-index: 8888;
+}
+
+.container{
+    margin-top: 20px;
 }
 .modal-footer{
     position: relative;
@@ -14,9 +19,42 @@
     top: 20px;
     color: #de2020;
 }
+.nav-link{
+    color: #fff !important;
+    font-size: 18px;
+}
+.dropdown-item{
+    color: #000 !important;
+    font-size: 18px;
+}
+.navbar-right{
+    margin: 0;
+}
+.navbar-right span{
+    color: #fff !important;
+    vertical-align: top;
+}
+.navbar-link{
+    color: #fff !important;
+    font-size: 18px;
+}
 .remind-text-signup{
     position: absolute;
     left: 20px;
     top: 20px;
     color: #de2020;
+}
+
+.active a{
+    color: #17a2b8 !important;
+}
+.footer-desc{
+    color: #f2f2f2;
+}
+.form-horizontal label{
+    font-weight: 700;
+    color: #333;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
 }

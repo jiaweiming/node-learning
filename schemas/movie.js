@@ -11,6 +11,12 @@ var MovieSchema = new mongoose.Schema({
     language: {
         type: String
     },
+    photo: {
+        type: String
+    },
+    description: {
+       type: String
+    },
     meta: {
         createAt: {
             type: Date,
