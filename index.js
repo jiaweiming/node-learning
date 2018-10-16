@@ -7,8 +7,9 @@ var bodyParser = require("body-parser");
 var port = process.env.PORT || 8000;
 var app = express();
 var dbUrl = "mongodb://localhost:27017/study";
+var onlineDBUrl = 'mongodb://52.80.114.70:27021';
 
-mongoose.connect(dbUrl, {useNewUrlParser: true}, function (err) {
+mongoose.connect(onlineDBUrl, {useNewUrlParser: true}, function (err) {
     if (err) {
         console.log('Connection Error:' + err)
     } else {
@@ -16,7 +17,7 @@ mongoose.connect(dbUrl, {useNewUrlParser: true}, function (err) {
     }
 });
 
-app.set('views', './views/pages');
+app.set('views', './app/views/pages');
 app.set('view engine', 'pug');
 mongoose.set('useCreateIndex', true);//去除warning
 app.use(bodyParser.json());
@@ -24,7 +25,7 @@ app.use(cookieParser());//session依赖cookie中间件，两个需要单独安�
 app.use(session({
     secret: 'study',
     store: new mongoStore({
-        url: dbUrl,
+        url: onlineDBUrl,
         collection: 'sessions'
     }),
     resave: false,

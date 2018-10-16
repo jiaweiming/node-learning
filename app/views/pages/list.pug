@@ -5,20 +5,20 @@ block content
             table.table.table-hover.table-bordered
                 thead
                     tr
-                        th 电影名字
-                        th 电影导演
-                        th 电影语言
-                        th 录入时间
-                        th 查看
-                        th 删除
+                        th Title
+                        th Price
+                        th Country
+                        th Time
+                        th View
+                        th Delete
                 tbody
                     each item in movies
                         tr(class="item-id-" + item._id)
                             td #{item.title}
-                            td #{item.doctor}
+                            td $#{item.price}
                             td #{item.language}
                             td #{moment(item.meta.createdAt).format('MM/DD/YYYY')}
-                            td: a(href="../movie/" + item._id) 查看
+                            td: a(href="../movie/" + item._id) Quick View
                             //td: a(href="../admin/update/" + item._id) 修改
                             td
-                                button.btn.btn-danger.del(type="button", data-id=item._id) 删除
+                                button.btn.btn-danger.del(type="button", data-id=item._id) Delete

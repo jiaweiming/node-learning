@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+    .container
+        .row
+            .col-md-4
+                img(src= movie.photo,  width="100%")
+            .col-md-8
+                dl.dl-horizontal
+                    dt Title
+                    dd= movie.title
+                    dt Price
+                    dd= '$' + movie.price
+                    dt Brand SpokesPerson
+                    dd= movie.actors
+                    dt Country
+                    dd= movie.language
+                    dt Description
+                    dd= movie.description
+                    button.btn.btn-outline-info ADD TO CART
+            ul.col-md-12
+                each item in comments
+                    li
+                        p #{item.from.name}
+
+            .col-md-12
+                form(method="POST", action="/user/comment")
+                    input(type='hidden', name='content[product]', value= movie._id)
+                    input(type='hidden', name='content[from]', value= user._id)
+                    .form-group
+                        textarea.form-control(name="comment[content]")
+                    button.btn.btn-primary(type='submit') SUBMIT

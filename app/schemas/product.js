@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
 //定义一个基本的模型，对象类型
-var MovieSchema = new mongoose.Schema({
+var ProductSchema = new mongoose.Schema({
     title: {
         type: String
     },
-    doctor: {
+    price: {
         type: String
     },
     language: {
@@ -16,6 +16,9 @@ var MovieSchema = new mongoose.Schema({
     },
     description: {
        type: String
+    },
+    actors: {
+        type: String
     },
     meta: {
         createAt: {
@@ -30,7 +33,7 @@ var MovieSchema = new mongoose.Schema({
 });
 
 //每次在存储之前调用，记录创建时间
-MovieSchema.pre('save', function (next) {
+ProductSchema.pre('save', function (next) {
     if (this.isNew) { //如果是新加的，将新的时间赋值
         this.meta.createAt = this.meta.updateAt = Date.now()
     } else {
@@ -40,7 +43,7 @@ MovieSchema.pre('save', function (next) {
 });
 
 //添加静态方法，查询数据
-MovieSchema.statics = {
+ProductSchema.statics = {
     fetch: function (callback) {
         return this.find({}).sort('meta-updateAt').exec(callback)
     },
@@ -49,4 +52,4 @@ MovieSchema.statics = {
     }
 };
 
-module.exports = MovieSchema;
+module.exports = ProductSchema;

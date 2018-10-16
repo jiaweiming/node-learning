@@ -3,32 +3,32 @@ extends ../layout
 block content
     .container
         .row
-            form.form-horizontal.col-md-12(method="post", action="/admin/movie/new")
+            form.form-horizontal.col-md-12(method="post", action="/admin/product/new")
                 input(type="hidden")
                 .form-group
-                    label.col-sm-12.control-label(for="inputTitle") 名称
+                    label.col-sm-12.control-label(for="inputTitle") Title
                     .col-sm-12
                         input#inputTitle.form-contol.col-md-12(type="text", name="movie[title]", required)
                 .form-group
-                    label.col-sm-12.control-label(for="inputDoctor") 导演
+                    label.col-sm-12.control-label(for="inputPrice") Price
                     .col-sm-12
-                        input#inputDoctor.form-contol.col-md-12(type="text", name="movie[doctor]", required)
+                        input#inputPrice.form-contol.col-md-12(type="text", name="movie[price]", required)
                 .form-group
-                    label.col-sm-12.control-label(for="inputActors") 演员
+                    label.col-sm-12.control-label(for="inputActors") Brand Speakers
                     .col-sm-12
                         input#inputActors.form-contol.col-md-12(type="text", name="movie[actors]", required)
                 .form-group
-                    label.col-sm-12.control-label(for="inputLanguage") 语言
+                    label.col-sm-12.control-label(for="inputLanguage") Country
                     .col-sm-12
                         input#inputLanguage.form-contol.col-md-12(type="text", name="movie[language]", required)
                 .form-group
-                    label.col-sm-12.control-label(for="inputPhoto") 海报（https://cdn.shopify.com/s/files/1/2350/7085/files/timg.jpg?8815394070984293251）
+                    label.col-sm-12.control-label(for="inputPhoto") Image
                     .col-sm-12
                         input#inputPhoto.form-contol.col-md-12(type="text", name="movie[photo]", required)
                 .form-group
-                    label.col-sm-12.control-label(for="inputDescription") 简介
+                    label.col-sm-12.control-label(for="inputDescription") Description
                     .col-sm-12
                         input#inputDescription.form-contol.col-md-12(type="text", name="movie[description]", required)
                 .form-group
                     .col-sm-offset-2.col-sm-12
-                        button.btn.btn-primary.col-md-12.btn-lg(type="submit") 录入
+                        button.btn.btn-primary.col-md-12.btn-lg(type="submit") SUBMIT

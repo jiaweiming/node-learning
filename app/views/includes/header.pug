@@ -5,7 +5,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
     .collapse.navbar-collapse#navbarNavDropdown
         ul.navbar-nav
             li.nav-item.active
-                a.nav-link(href="#") #{title}
+                a.nav-link(href="#") Watching: #{title}
                     span.sr-only (currently)
             li.nav-item
                 a.nav-link(href="/") Home
@@ -24,49 +24,49 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
                     a.dropdown-item(href="#") Action Three
     if user
         p.navbar-text.navbar-right
-            a.navbar-link 欢迎您,
-                i.navbar-link-name  &nbsp#{user.name}&nbsp
+            a.navbar-link Welcome,
+                .navbar-link-name  &nbsp#{user.name}&nbsp
             span &nbsp;|&nbsp;
-            a.navbar-link(href="/logout") 退出
+            a.navbar-link(href="/logout") LogOut
                 //img(src='images/logout.png')
     else
         p.navbar-text.navbar-right
-            a.navbar-link(href="#", data-toggle="modal", data-target="#signUpModal") 注册
+            a.navbar-link(href="#", data-toggle="modal", data-target="#signUpModal") SignUp
                 //img(src='images/signup.png')
             span &nbsp;|&nbsp;
-            a.navbar-link(href="#", data-toggle="modal", data-target="#signInModal") 登录
+            a.navbar-link(href="#", data-toggle="modal", data-target="#signInModal") LogIn
                 //img(src='images/login_user.png')
 #signUpModal.modal.fade
     .modal-dialog
         .modal-content
             form#signUpForm
-                .modal-header 注册
+                .modal-header SignUp
                 .modal-body
                     .form-group
-                        label(for="signUpName") 用户名
+                        label(for="signUpName") Name
                         input#signUpName.form-control(name="user[name]", type="text", required)
                     .form-group
-                        label(for="signUpPassWord") 密码
+                        label(for="signUpPassWord") Password
                         input#signUpPassWord.form-control(name="user[password]", type="password", required)
                 .modal-footer
                     span.remind-text-signup
-                    button.btn.btn-danger(type="button", data-dismiss="modal") 关闭
-                    button.btn.btn-signUp.btn-success(type="submit") 提交
+                    button.btn.btn-danger(type="button", data-dismiss="modal") Close
+                    button.btn.btn-signUp.btn-success(type="submit") Submit
 #signInModal.modal.fade
     .modal-dialog
         .modal-content
             form#signInForm
-                .modal-header 登录
+                .modal-header LogIn
                 .modal-body
                     .form-group
-                        label(for="signInName") 用户名
+                        label(for="signInName") Name
                         input#signInName.form-control(name="user[name]", type="text", required)
                     .form-group
-                        label(for="signInPassWord") 密码
+                        label(for="signInPassWord") Password
                         input#signInPassWord.form-control(name="user[password]", type="password", required)
                 .modal-footer
                     span.remind-text
-                    button.btn.btn-danger(type="button", data-dismiss="modal") 关闭
-                    button.btn.btn-signIn.btn-success(type="submit") 提交
+                    button.btn.btn-danger(type="button", data-dismiss="modal") Close
+                    button.btn.btn-signIn.btn-success(type="submit") Submit
 nav.navbar.fixed-bottom.navbar-light.bg-dark.justify-content-center
     span.footer-desc COPYRIGHT © 2018  &nbsp Made by jwm

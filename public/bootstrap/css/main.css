@@ -58,8 +58,12 @@
     text-overflow:ellipsis;
     overflow:hidden;
 }
-.navbar-link-name{
+.navbar-link-name a{
     color: #ff6d04 !important;
+}
+.bg-dark span{
+    color: #fff !important;
+    margin-top: -3px;
 }
 .navbar-link img{
     width: 20px;
