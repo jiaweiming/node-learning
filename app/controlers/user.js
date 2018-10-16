@@ -36,3 +36,20 @@ exports.signIn =  function (req, res) {
         }
     })
 };
+
+exports.account = function (req, res) {  //个人账户
+    var id="";
+    User.findById(id,function (err,users) {
+        console.log(users)
+    });
+    res.render('account', {
+        title: 'Account',
+        account: [{
+            name: "",
+            sex: "",
+            avatar:"",
+            phone: "",
+            description: ""
+        }]
+    })
+};

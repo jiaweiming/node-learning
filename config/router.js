@@ -29,6 +29,7 @@ module.exports = function (app) {
 //下面的是user相关的路由
     app.post('/user/signUp', User.signUp);
     app.post('/user/signIn', User.signIn);
+    app.get('/account', User.account);
     app.get('/logout', function (req, res) {
         delete req.session.user;
         delete app.locals.user;//此处按理是不需要删除的，session为空时，本地APP肯定也为空，两次是为了刷新当前页面而已

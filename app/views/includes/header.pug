@@ -5,7 +5,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
     .collapse.navbar-collapse#navbarNavDropdown
         ul.navbar-nav
             li.nav-item.active
-                a.nav-link(href="#") Watching: #{title}
+                a.nav-link(href="#") #{title}
                     span.sr-only (currently)
             li.nav-item
                 a.nav-link(href="/") Home
@@ -25,7 +25,8 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
     if user
         p.navbar-text.navbar-right
             a.navbar-link Welcome,
-                .navbar-link-name  &nbsp#{user.name}&nbsp
+                .navbar-link-name
+                    a(href="/account") &nbsp#{user.name}&nbsp
             span &nbsp;|&nbsp;
             a.navbar-link(href="/logout") LogOut
                 //img(src='images/logout.png')
