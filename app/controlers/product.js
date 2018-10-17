@@ -91,15 +91,16 @@ exports.deleteList = function (req, res) {  //列表页删除功能
 
 exports.detail = function (req, res) {  //详情页
     var id = req.params.id;
-    Product.findById(id, function (err, movie) {
-        Comment.find({movie: id}, function (err, comments) {
-            console.log(comments);
-            console.log(movie);
-            res.render("detail", {
-                title: "Product",
-                movie: movie,
-                comments: comments
+    Product.findById(id, function (err, movies) {   //先通过id找到指定的商品，再来找评价，最后异步把两个数组render出来
+        Comment
+            .find({product: id})
+            .populate('from','name')
+            .exec(function (err, comments) {  //此处的id,在comments的模型中product:objid 已赋值，
+                res.render("detail", {        //所以此处通过传入一个对象来做查询条件，找到对应的评价
+                    title: "Product",
+                    movie: movies,
+                    comments: comments
+                })
             })
-        })
     });
 };

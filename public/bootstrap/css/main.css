@@ -69,3 +69,10 @@
     width: 20px;
     vertical-align: sub;
 }
+.col-1 a img{
+    width: 70%;
+}
+.comment-list-item{
+    background-color: rgba(86,61,124,.15);
+    margin-bottom: 5px;
+}

@@ -14,19 +14,25 @@ block content
                     dt Brand SpokesPerson
                     dd= movie.actors
                     dt Country
-                    dd= movie.language
+                    dd= movie.country
                     dt Description
                     dd= movie.description
-                    button.btn.btn-outline-info ADD TO CART
+            hr.col-md-12
             ul.col-md-12
                 each item in comments
-                    li
-                        p #{item.from.name}
-
+                    li.row.comment-list-item
+                        .col-1
+                            a(href="#comments", data-Toid=item._id, data-Fromid=item.from.id)
+                                img(src="images/user-1.png")
+                        .col-11
+                            h6
+                                b #{item.from.name}
+                                p #{item.content}
             .col-md-12
-                form(method="POST", action="/user/comment")
-                    input(type='hidden', name='content[product]', value= movie._id)
-                    input(type='hidden', name='content[from]', value= user._id)
-                    .form-group
-                        textarea.form-control(name="comment[content]")
-                    button.btn.btn-primary(type='submit') SUBMIT
+                #comments
+                    form(method="POST", action="/user/comment")
+                        input(type='hidden', name='comment[product]', value= movie._id)
+                        input(type='hidden', name='comment[from]', value= user._id)
+                        .form-group
+                            textarea.form-control(name="comment[content]")
+                        button.btn.btn-primary.comment(type='submit') SUBMIT

@@ -4,21 +4,14 @@ var ObjectId = Schema.Types.ObjectId; //默认的id中间件
 
 //定义评价基本的模型，评论的主体、来自谁、发送给谁、内容四个板块
 var CommentSchema = new Schema({
-    product: {
-        type: ObjectId,
-        ref: 'Movie'
-    },
-    from: {
-        type: ObjectId,
-        ref: 'User'
-    },
-    to: {
-        type: ObjectId,
-        ref: 'User'
-    },
-    content: {
-        type: String
-    },
+    product: {type: ObjectId, ref: 'Movie'},
+    from: {type: ObjectId, ref: 'User'},
+    reply: [{
+        from: {type: ObjectId, ref: 'User'},
+        to: {type: ObjectId, ref: 'User'},
+        content: {type: String}
+    }],
+    content: {type: String},
     meta: {
         createAt: {
             type: Date,

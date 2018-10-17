@@ -2,7 +2,13 @@ extends ../layout
 block content
     .container
         .row
-            .col-md-12
-                table
-                    tr 333
-                        td 333
+            if user
+                table.table.table-hover.table-bordered
+                    thead
+                        tr
+                            th name
+                            th password
+                    tbody
+                        tr
+                            td #{user.name}
+                            td #{user.password}
