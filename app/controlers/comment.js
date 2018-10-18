@@ -2,11 +2,11 @@ var Comment = require('../modals/comment');
 exports.save = function (req, res) {
     var _comment = req.body.comment;
     var movieId = _comment.product;
-    if (_comment.id) {
-        Comment.findById(_comment.id, function (err, comment) {
+    if (_comment.cid) {
+        Comment.findById(_comment.cid, function (err, comment) {
             var reply = {
                 from: _comment.from,
-                to: _comment.Toid,
+                to: _comment.tid,
                 content: _comment.content
             };
             comment.reply.push(reply);
@@ -14,7 +14,6 @@ exports.save = function (req, res) {
                 if (err) {
                     console.log(err)
                 }
-                console.log(comment);
                 res.redirect('/movie/' + movieId);
             })
         })
@@ -24,7 +23,6 @@ exports.save = function (req, res) {
             if (err) {
                 console.log(err)
             }
-            console.log(comment);
             res.redirect('/movie/' + movieId);
         })
     }

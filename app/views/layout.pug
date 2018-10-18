@@ -4,12 +4,14 @@ html
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
         title #{title}
-        include includes/css
-        include includes/js
+        link(rel='icon', href='images/icon.ico')
+        include includes/style.pug
+        include includes/script.pug
     body
-        include includes/header
+        include includes/header.pug
         block content
         block javascript
             script(src="jquery/jquery-form.js", type="text/javascript")
             script(src="js/admin.js", type="text/javascript")
             script(src="js/details.js", type="text/javascript")
+            script(src="js/search.js", type="text/javascript")

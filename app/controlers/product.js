@@ -94,7 +94,8 @@ exports.detail = function (req, res) {  //详情页
     Product.findById(id, function (err, movies) {   //先通过id找到指定的商品，再来找评价，最后异步把两个数组render出来
         Comment
             .find({product: id})
-            .populate('from','name')
+            .populate('from', 'name')
+            .populate('reply.from reply.to', 'name')
             .exec(function (err, comments) {  //此处的id,在comments的模型中product:objid 已赋值，
                 res.render("detail", {        //所以此处通过传入一个对象来做查询条件，找到对应的评价
                     title: "Product",
@@ -103,4 +104,21 @@ exports.detail = function (req, res) {  //详情页
                 })
             })
     });
+};
+
+exports.search = function (req, res) {  //处理搜索结果
+    var keyWords = req.query.q;
+    Product
+        .where(keyWords)
+        .exec(function (err, results) {
+
+            if(results && results.length){
+                res.json(results);
+            }else{
+                res.json({
+                    message:"Unknown Error"
+                })
+            }
+
+        })
 };

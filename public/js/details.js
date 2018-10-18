@@ -1,17 +1,20 @@
 $(function () {
     $('.comment').on('click',function () {
         var target = $(this);
-        var toId = target.data('Toid');
-        var commentId = target.data('Fromid');
+        var toId = target.data('tid');
+        var commentId = target.data('cid');
         $('<input/>').attr({
             type:'hidden',
-            name:'comment[Toid]',
+            name:'comment[tid]',
             value:toId
-        }).appendTo('#comments');
+        }).appendTo('#commentsForm');
         $('<input/>').attr({
             type:'hidden',
-            name:'comment[Fromid]',
-            value:toId
-        }).appendTo('#comments')
+            name:'comment[cid]',
+            value:commentId
+        }).appendTo('#commentsForm')
+    });
+    $('.btn-submit-comment').on('click',function () {
+
     })
 });

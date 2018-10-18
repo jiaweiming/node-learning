@@ -21,18 +21,36 @@ block content
             ul.col-md-12
                 each item in comments
                     li.row.comment-list-item
-                        .col-1
-                            a(href="#comments", data-Toid=item._id, data-Fromid=item.from.id)
-                                img(src="images/user-1.png")
-                        .col-11
-                            h6
-                                b #{item.from.name}
-                                p #{item.content}
-            .col-md-12
-                #comments
-                    form(method="POST", action="/user/comment")
-                        input(type='hidden', name='comment[product]', value= movie._id)
-                        input(type='hidden', name='comment[from]', value= user._id)
-                        .form-group
-                            textarea.form-control(name="comment[content]")
-                        button.btn.btn-primary.comment(type='submit') SUBMIT
+                        .container.container-comment
+                            .row.align-self-start.owner-box
+                                .name-box
+                                    h6 #{item.from.name}
+                                    a.comment(href="#comments", data-cid=item._id, data-tid=item.from._id, )
+                                        img(src="images/user-1.png")
+                                .content-box
+                                    p #{item.content}
+                            .row.align-self-end
+                                if item.reply && item.reply.length
+                                    each reply in item.reply
+                                        .col-12.reply-nav
+                                            .reply-box-name
+                                                h6 #{reply.from.name}
+                                                img(src="images/user-1.png")
+                                            .reply-box-content
+                                                p #{reply.content}
+            if user
+                .col-md-12
+                    #comments
+                        form#commentsForm(method="POST", action="/user/comment")
+                            input(type='hidden', name='comment[product]', value= movie._id)
+                            input(type='hidden', name='comment[from]', value= user._id)
+                            .form-group
+                                textarea.form-control(name="comment[content]", required)
+                            button.btn.btn-primary(type='submit') SUBMIT
+            else
+                .col-md-12
+                    #comments
+                        form#commentsForm(method="POST", action="/user/comment")
+                            .form-group
+                                textarea.form-control(name="comment[content]", required)
+                            a.btn.btn-primary(type='submit', href="#", data-toggle="modal", data-target="#signInModal") SUBMIT

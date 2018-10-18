@@ -1,8 +1,8 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
+nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between.fixed-top
     img(class="loading", src="images/loading.gif")
     button.navbar-toggler(data-toggle="collapse", data-target="#navbarNavDropdown", aria-controls="navbarNavDropdown", aria-expanded="false", aria-label="Toggle navigation")
         span.navbar-toggler-icon
-    .collapse.navbar-collapse#navbarNavDropdown
+    .collapse.navbar-collapse#navbarNavDropdown.justify-content-between
         ul.navbar-nav
             li.nav-item.active
                 a.nav-link(href="#") #{title}
@@ -22,6 +22,9 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-dark.justify-content-between
                     a.dropdown-item(href="#") Action One
                     a.dropdown-item(href="#") Action Two
                     a.dropdown-item(href="#") Action Three
+        form.form-inline.form-search#form-search(method="GET", action="/search")
+            input.form-control.mr-sm-2.input-content(type="search", placeholder="Search", aria-label="Search", name="q", required)
+            button.btn.btn-outline-success.btn-search(type="submit") Search
     if user
         p.navbar-text.navbar-right
             a.navbar-link Welcome,

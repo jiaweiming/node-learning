@@ -37,5 +37,8 @@ module.exports = function (app) {
     });
 
 //下面是评价相关的路由
-    app.post('/user/comment', Comment.save)
+    app.post('/user/comment', Comment.save);
+
+//下面的是搜索逻辑
+    app.get('/search', Product.search)
 };
