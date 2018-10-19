@@ -7,9 +7,12 @@ var bodyParser = require("body-parser");
 var port = process.env.PORT || 8000;
 var app = express();
 var dbUrl = "mongodb://localhost:27017/study";
-var onlineDBUrl = 'mongodb://52.80.114.70:27021';
+var options={
+    useNewUrlParser: true
+};
+var onlineDBUrl = 'mongodb://106.15.195.250:27017/';
 
-mongoose.connect(dbUrl, {useNewUrlParser: true}, function (err) {
+mongoose.connect(onlineDBUrl, options , function (err) {
     if (err) {
         console.log('Connection Error:' + err)
     } else {
@@ -25,7 +28,7 @@ app.use(cookieParser());//session依赖cookie中间件，两个需要单独安�
 app.use(session({
     secret: 'study',
     store: new mongoStore({
-        url: dbUrl,
+        url: onlineDBUrl,
         collection: 'sessions'
     }),
     resave: false,

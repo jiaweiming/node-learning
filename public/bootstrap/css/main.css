@@ -6,7 +6,9 @@
     display: none;
     z-index: 8888;
 }
-
+#carouselExampleIndicators{
+    margin-top: 59px;
+}
 .container{
     margin-top: 70px;
 }
