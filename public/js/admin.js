@@ -6,12 +6,8 @@ $(function () {
         var tr = $('.item-id-' + id);
         $.ajax({
             type: "DELETE",
-            url: '/admin/list?id=' + id,
-            beforeSend: function () {
-                $(".loading").show()
-            }
+            url: '/admin/list?id=' + id
         }).done(function (res) {
-            $(".loading").hide();
             if (res.success === 1) {
                 if (tr.length) {
                     tr.remove()
@@ -52,10 +48,6 @@ $('.btn-signIn').on('click', function () {
             }
         });
         return false;
-    } else {
-        $(remindText).fadeIn();
-        $(remindText).text("账号和密码不能为空！");
-        $(remindText).fadeOut(3500);
     }
 });
 
@@ -86,10 +78,6 @@ $('.btn-signUp').on('click', function () {
             }
         });
         return false;
-    } else {
-        $(remindText).fadeIn();
-        $(remindText).text("账号和密码不能为空！");
-        $(remindText).fadeOut(3500);
     }
 });
 

@@ -3,7 +3,7 @@ exports.signUp =  function (req, res) {
     var _user = req.body.user;
     User.findOne({name: _user.name}, function (err, user) {
         if (user) {
-            res.json({message: 0, text: "Name Exist，Try A New One！"});
+            res.json({message: 0, text: "Name Exist！"});
         } else {
             var newUser = new User(_user);
             newUser.save(function (err, user) {
@@ -23,14 +23,14 @@ exports.signIn =  function (req, res) {
     var password = _user.password;
     User.findOne({name: name}, function (err, user) {
         if (!user) {
-            res.json({message: 2, text: "Name Is Not Exist ，Please Register First！"});
+            res.json({message: 2, text: "Name is not exist！"});
         } else {
             user.comparePassWord(password, function (err, isMatch) {
                 if (isMatch) {
                     req.session.user = user;
-                    res.json({message: 1, text: "SignIn Successfully！"});
+                    res.json({message: 1, text: "SignIn successfully！"});
                 } else {
-                    res.json({message: 0, text: "Password Is Not Correct！"});
+                    res.json({message: 0, text: "Password error！"});
                 }
             })
         }
